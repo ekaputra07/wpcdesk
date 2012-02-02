@@ -16,11 +16,11 @@ class SettingsWindow(QtGui.QDialog):
         self.ui = Ui_formConfig()
         self.ui.setupUi(self)
 
-        self._pull_data()
+        self.pull_data()
 
         QtCore.QObject.connect(self.ui.btnSave, QtCore.SIGNAL("clicked()"), self.saveConfig)
 
-    def _pull_data(self):
+    def pull_data(self):
         if self.is_config_exists:
             data = self.read_from_file()
             self.ui.serverEdit.setText(data.get('server',''))

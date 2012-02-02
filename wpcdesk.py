@@ -53,6 +53,7 @@ class wpcDesk(QtGui.QMainWindow):
                 self.ui.tblComments.resizeColumnsToContents()
 
     def showConfigWindow(self):
+        self.settings.pull_data()
         self.settings.exec_()
 
 
