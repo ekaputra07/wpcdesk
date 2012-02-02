@@ -5,12 +5,26 @@ import pickle
 import bz2
 
 from PyQt4 import QtGui, QtCore
-from settingsWindow import Ui_formConfig
+from settings_window import Ui_formConfig
 
 __filename__ = 'config.cfg'
 __configpath__ = os.path.join(os.path.abspath(os.path.dirname(__file__)), __filename__)
 
-class SettingsWindow(QtGui.QDialog):
+def get_connection_settings():
+    """Get connection setting from config file."""
+    data = {}
+    try:
+        cfile = open(__configpath__, 'rb')
+        data = pickle.load(cfile)
+        cfile.close()
+    except:
+        QtGui.QMessageBox.warning(self, 'Warning!','Failed to read cofiguration file,\nMake sure "%s" file is readable.' % __filename__, QtGui.QMessageBox.Ok)
+    return data
+
+
+class ConnectionSettings(QtGui.QDialog):
+    """Main class for Connection Setting Window"""
+
     def __init__(self, parent=None):
         QtGui.QDialog.__init__(self, parent)
         self.ui = Ui_formConfig()
@@ -46,12 +60,7 @@ class SettingsWindow(QtGui.QDialog):
 
     def read_from_file(self):
         data = {}
-        try:
-            cfile = open(__configpath__, 'rb')
-            data = pickle.load(cfile)
-            cfile.close()
-        except:
-            QtGui.QMessageBox.warning(self, 'Warning!','Failed to read cofiguration file,\nMake sure "%s" file is readable.' % __filename__, QtGui.QMessageBox.Ok)
+        data = get_connection_settings()
         return data
 
     def saveConfig(self):
