@@ -3,7 +3,7 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
-from main_window import Ui_mainWindow
+from ui.main_window import Ui_mainWindow
 from settings import ConnectionSettings
 from wpcdesk_threads import GetCommentsThread
 import time
@@ -29,6 +29,16 @@ class wpcDesk(QtGui.QMainWindow):
         self.get_comments_thread = GetCommentsThread()
         self.get_comments_thread.response_received.connect(self.display_comments)
         self.get_comments_thread.error_raised.connect(self.display_errmsg)
+        self.get_comments_thread.is_loading.connect(self.update_progressbar)
+        self.get_comments_thread.status_updated.connect(self.update_status)
+
+        if not self.settings.is_config_exists:
+            self.update_status('Connection settings not available.')
+        else:
+            self.update_status('Ready to connect.')
+
+        self.ui.progressBar.hide()
+
 
     def loadComments(self):
         if not self.settings.is_config_exists:
@@ -65,6 +75,15 @@ class wpcDesk(QtGui.QMainWindow):
 
     def display_errmsg(self, msg):
         QtGui.QMessageBox.warning(self, 'Warning!', msg, QtGui.QMessageBox.Ok)
+
+    def update_status(self, status):
+        self.ui.statusLabel.setText(status)
+
+    def update_progressbar(self, loading):
+        if loading:
+            self.ui.progressBar.show()
+        else:
+            self.ui.progressBar.hide()
 
     def showConfigWindow(self):
         self.settings.pull_data()

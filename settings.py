@@ -5,7 +5,7 @@ import pickle
 import bz2
 
 from PyQt4 import QtGui, QtCore
-from settings_window import Ui_formConfig
+from ui.settings_window import Ui_formConfig
 
 __filename__ = 'config.cfg'
 __configpath__ = os.path.join(os.path.abspath(os.path.dirname(__file__)), __filename__)
