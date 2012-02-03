@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -88,11 +87,4 @@ class wpcDesk(QtGui.QMainWindow):
     def showConfigWindow(self):
         self.settings.pull_data()
         self.settings.exec_()
-
-
-if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
-    wpcdesk = wpcDesk()
-    wpcdesk.show()
-    sys.exit(app.exec_())
 
