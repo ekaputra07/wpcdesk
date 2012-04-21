@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'about.ui'
 #
-# Created: Sat Apr 21 22:00:04 2012
+# Created: Sun Apr 22 00:31:28 2012
 #      by: PyQt4 UI code generator 4.7.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -22,6 +22,9 @@ class Ui_AboutWindow(object):
         AboutWindow.setSizePolicy(sizePolicy)
         AboutWindow.setMinimumSize(QtCore.QSize(481, 283))
         AboutWindow.setMaximumSize(QtCore.QSize(481, 283))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/chat-quotes.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        AboutWindow.setWindowIcon(icon)
         self.closeBtn = QtGui.QPushButton(AboutWindow)
         self.closeBtn.setGeometry(QtCore.QRect(380, 250, 93, 27))
         self.closeBtn.setObjectName("closeBtn")
@@ -36,12 +39,18 @@ class Ui_AboutWindow(object):
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
         self.label_2 = QtGui.QLabel(self.tab)
-        self.label_2.setGeometry(QtCore.QRect(10, 10, 431, 181))
+        self.label_2.setGeometry(QtCore.QRect(100, 10, 341, 181))
         self.label_2.setAutoFillBackground(False)
         self.label_2.setLineWidth(1)
         self.label_2.setTextFormat(QtCore.Qt.RichText)
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
+        self.label = QtGui.QLabel(self.tab)
+        self.label.setGeometry(QtCore.QRect(20, 0, 81, 91))
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap(":/chat-quotes.png"))
+        self.label.setScaledContents(False)
+        self.label.setObjectName("label")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -70,14 +79,14 @@ class Ui_AboutWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Sans\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">WordPress Comments Manager v1.0</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\"></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">WordPress Comments Manager is a small computer program that can be used to manage WordPress Comments remotely without login into WordPress admin panel. This take advantages of WordPress XML-RPC access.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Powered by <span style=\" font-weight:600;\">Python</span> and <span style=\" font-weight:600;\">PyQt4 Interface</span>.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright (C) 2012 by Eka Putra</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ekaputra@balitechy.com, http://balitechy.com</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\"></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600;\">WordPress Comments Manager v1.0</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt; font-weight:600;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">WordPress Comments Manager is a small computer program that can be used to manage WordPress Comments remotely without login into WordPress admin panel. This take advantages of WordPress XML-RPC access.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">Powered by </span><span style=\" font-size:9pt; font-weight:600;\">Python</span><span style=\" font-size:9pt;\"> and </span><span style=\" font-size:9pt; font-weight:600;\">PyQt4 Interface</span><span style=\" font-size:9pt;\">.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">Copyright (C) 2012 by Eka Putra</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">ekaputra@balitechy.com, http://balitechy.com</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:9pt; font-weight:600;\"></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("AboutWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
         self.plainTextEdit_2.setPlainText(QtGui.QApplication.translate("AboutWindow", "Eka Putra <ekaputra@balitechy.com>", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("AboutWindow", "Authors", None, QtGui.QApplication.UnicodeUTF8))
@@ -409,3 +418,4 @@ class Ui_AboutWindow(object):
 "Public License instead of this License.", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("AboutWindow", "License", None, QtGui.QApplication.UnicodeUTF8))
 
+import main_rc

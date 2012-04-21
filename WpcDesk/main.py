@@ -26,6 +26,7 @@ class wpcDesk(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.actionRefresh, QtCore.SIGNAL("activated()"), self.loadComments)
         QtCore.QObject.connect(self.ui.actionConnection, QtCore.SIGNAL("activated()"), self.showConfigWindow)
         QtCore.QObject.connect(self.ui.actionAbout, QtCore.SIGNAL("activated()"), self.showAboutWindow)
+        QtCore.QObject.connect(self.ui.tblComments, QtCore.SIGNAL("itemDoubleClicked(QTableWidgetItem*)"), self.showCommentEditor)
 
         self.get_comments_thread = GetCommentsThread()
         self.get_comments_thread.response_received.connect(self.display_comments)
@@ -34,9 +35,9 @@ class wpcDesk(QtGui.QMainWindow):
         self.get_comments_thread.status_updated.connect(self.update_status)
 
         if not self.settings.is_config_exists:
-            self.update_status('Connection settings not available.')
+            self.update_status('Connection settings not available!')
         else:
-            self.update_status('Ready to connect.')
+            self.update_status('Ready to connect...')
 
         self.ui.progressBar.hide()
         #self.loadComments()
@@ -44,7 +45,7 @@ class wpcDesk(QtGui.QMainWindow):
 
     def loadComments(self):
         if not self.settings.is_config_exists:
-            QtGui.QMessageBox.warning(self, 'Warning!','Connection settings not available.', QtGui.QMessageBox.Ok)
+            QtGui.QMessageBox.warning(self, 'Warning!','Connection settings not available!', QtGui.QMessageBox.Ok)
             self.settings.exec_()
         else:
             self.get_comments_thread.start()
@@ -70,8 +71,10 @@ class wpcDesk(QtGui.QMainWindow):
                 self.ui.tblComments.setItem(row, 1, QtGui.QTableWidgetItem(date))
                 self.ui.tblComments.setItem(row, 2, QtGui.QTableWidgetItem(comment[str_to_qstr('status')]))
                 self.ui.tblComments.setItem(row, 3, QtGui.QTableWidgetItem(comment[str_to_qstr('author')]))
-                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('content')][:100]+'...'))
-                self.ui.tblComments.setItem(row, 5, QtGui.QTableWidgetItem(comment[str_to_qstr('post_title')]))
+                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('author_email')]))
+                self.ui.tblComments.setItem(row, 5, QtGui.QTableWidgetItem(comment[str_to_qstr('content')][:100]+'...'))
+                self.ui.tblComments.setItem(row, 6, QtGui.QTableWidgetItem(comment[str_to_qstr('post_title')]))
+
                 row += 1
             self.ui.tblComments.resizeColumnsToContents()
 
@@ -94,4 +97,17 @@ class wpcDesk(QtGui.QMainWindow):
     def showAboutWindow(self):
         aboutWindow = AboutWindow()
         aboutWindow.exec_()
+
+    def showCommentEditor(self, QTableWidgetItem):
+        row = QTableWidgetItem.row()
+
+        comment_id = self.ui.tblComments.item(row, 0).text()
+        comment_date = self.ui.tblComments.item(row, 1).text()
+        comment_status = self.ui.tblComments.item(row, 2).text()
+        comment_author = self.ui.tblComments.item(row, 3).text()
+        comment_email = self.ui.tblComments.item(row, 4).text()
+        comment_content = self.ui.tblComments.item(row, 5).text()
+        comment_post = self.ui.tblComments.item(row, 6).text()
+
+        QtGui.QMessageBox.warning(self, 'Warning!', comment_content, QtGui.QMessageBox.Ok)
 

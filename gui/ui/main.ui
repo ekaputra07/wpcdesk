@@ -13,11 +13,21 @@
     <height>646</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="acceptDrops">
    <bool>false</bool>
   </property>
   <property name="windowTitle">
    <string>WordPress Comments Manager</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../res/main.qrc">
+    <normaloff>:/chat-quotes.png</normaloff>:/chat-quotes.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -91,7 +101,7 @@
        <number>0</number>
       </property>
       <property name="columnCount">
-       <number>6</number>
+       <number>7</number>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>true</bool>
@@ -168,6 +178,11 @@
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Email</string>
        </property>
       </column>
       <column>
@@ -295,8 +310,8 @@
   </widget>
   <action name="actionRefresh">
    <property name="icon">
-    <iconset>
-     <normaloff>res/arrow_refresh.png</normaloff>res/arrow_refresh.png</iconset>
+    <iconset resource="../res/main.qrc">
+     <normaloff>:/arrow_refresh.png</normaloff>:/arrow_refresh.png</iconset>
    </property>
    <property name="text">
     <string>Refresh</string>
@@ -307,8 +322,8 @@
   </action>
   <action name="actionConnection">
    <property name="icon">
-    <iconset>
-     <normaloff>res/connect.png</normaloff>res/connect.png</iconset>
+    <iconset resource="../res/main.qrc">
+     <normaloff>:/connect.png</normaloff>:/connect.png</iconset>
    </property>
    <property name="text">
     <string>Connection</string>
@@ -319,8 +334,8 @@
   </action>
   <action name="actionPreferences">
    <property name="icon">
-    <iconset>
-     <normaloff>res/cog_edit.png</normaloff>res/cog_edit.png</iconset>
+    <iconset resource="../res/main.qrc">
+     <normaloff>:/cog_edit.png</normaloff>:/cog_edit.png</iconset>
    </property>
    <property name="text">
     <string>Preferences</string>
@@ -331,8 +346,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset>
-     <normaloff>res/information.png</normaloff>res/information.png</iconset>
+    <iconset resource="../res/main.qrc">
+     <normaloff>:/information.png</normaloff>:/information.png</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -343,8 +358,8 @@
   </action>
   <action name="actionClose">
    <property name="icon">
-    <iconset>
-     <normaloff>res/door_in.png</normaloff>res/door_in.png</iconset>
+    <iconset resource="../res/main.qrc">
+     <normaloff>:/door_in.png</normaloff>:/door_in.png</iconset>
    </property>
    <property name="text">
     <string>Close</string>
@@ -354,7 +369,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res/main.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionClose</sender>

@@ -8,6 +8,6 @@ from WpcDesk.main import wpcDesk
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
     wpcdesk = wpcDesk()
-    wpcdesk.show()
+    wpcdesk.showMaximized()
     sys.exit(app.exec_())
 

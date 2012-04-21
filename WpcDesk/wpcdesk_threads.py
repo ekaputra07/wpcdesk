@@ -31,5 +31,5 @@ class GetCommentsThread(QtCore.QThread):
         except:
             self.is_loading.emit(False)
             self.status_updated.emit('Connection error...')
-            self.error_raised.emit('Failed connecting to server,\nMake sure connection setting is correct.')
+            self.error_raised.emit('Failed connecting to server,\nMake sure connection settings is correct.')
 
