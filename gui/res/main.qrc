@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="/">
+    <file>user.png</file>
+    <file>comment.png</file>
+    <file>cross.png</file>
+    <file>tick.png</file>
+    <file>time.png</file>
     <file>chat-quotes.png</file>
     <file>information.png</file>
     <file>arrow_refresh.png</file>

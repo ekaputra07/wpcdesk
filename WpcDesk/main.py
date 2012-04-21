@@ -69,10 +69,35 @@ class wpcDesk(QtGui.QMainWindow):
 
 
                 self.ui.tblComments.setItem(row, 1, QtGui.QTableWidgetItem(date))
-                self.ui.tblComments.setItem(row, 2, QtGui.QTableWidgetItem(comment[str_to_qstr('status')]))
-                self.ui.tblComments.setItem(row, 3, QtGui.QTableWidgetItem(comment[str_to_qstr('author')]))
+
+                #set status
+                status = QtGui.QTableWidgetItem()
+                if comment[str_to_qstr('status')] == 'approve':
+                    s = 'Approved'
+                    icon = QtGui.QIcon(':/tick.png')
+                else:
+                    s = 'Pending'
+                    icon = QtGui.QIcon(':/cross.png')
+
+                status.setText(s)
+                status.setIcon(icon)
+                self.ui.tblComments.setItem(row, 2, status)
+
+                #set author
+                author = QtGui.QTableWidgetItem()
+                author.setText(comment[str_to_qstr('author')])
+                author.setIcon(QtGui.QIcon(':/user.png'))
+                self.ui.tblComments.setItem(row, 3, author)
+
+                #set email
                 self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('author_email')]))
-                self.ui.tblComments.setItem(row, 5, QtGui.QTableWidgetItem(comment[str_to_qstr('content')][:100]+'...'))
+
+                #set comment
+                comm = QtGui.QTableWidgetItem()
+                comm.setText(comment[str_to_qstr('content')][:100]+'...')
+                comm.setIcon(QtGui.QIcon(':/comment.png'))
+                self.ui.tblComments.setItem(row, 5, comm)
+
                 self.ui.tblComments.setItem(row, 6, QtGui.QTableWidgetItem(comment[str_to_qstr('post_title')]))
 
                 row += 1
