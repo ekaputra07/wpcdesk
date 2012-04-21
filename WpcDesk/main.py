@@ -2,8 +2,9 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
-from ui.main_window import Ui_mainWindow
+from gui.main_window import Ui_mainWindow
 from settings import ConnectionSettings
+from about import AboutWindow
 from wpcdesk_threads import GetCommentsThread
 import time
 
@@ -24,6 +25,7 @@ class wpcDesk(QtGui.QMainWindow):
 
         QtCore.QObject.connect(self.ui.actionRefresh, QtCore.SIGNAL("activated()"), self.loadComments)
         QtCore.QObject.connect(self.ui.actionConnection, QtCore.SIGNAL("activated()"), self.showConfigWindow)
+        QtCore.QObject.connect(self.ui.actionAbout, QtCore.SIGNAL("activated()"), self.showAboutWindow)
 
         self.get_comments_thread = GetCommentsThread()
         self.get_comments_thread.response_received.connect(self.display_comments)
@@ -37,6 +39,7 @@ class wpcDesk(QtGui.QMainWindow):
             self.update_status('Ready to connect.')
 
         self.ui.progressBar.hide()
+        #self.loadComments()
 
 
     def loadComments(self):
@@ -67,7 +70,7 @@ class wpcDesk(QtGui.QMainWindow):
                 self.ui.tblComments.setItem(row, 1, QtGui.QTableWidgetItem(date))
                 self.ui.tblComments.setItem(row, 2, QtGui.QTableWidgetItem(comment[str_to_qstr('status')]))
                 self.ui.tblComments.setItem(row, 3, QtGui.QTableWidgetItem(comment[str_to_qstr('author')]))
-                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('content')][:50]+'...'))
+                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('content')][:100]+'...'))
                 self.ui.tblComments.setItem(row, 5, QtGui.QTableWidgetItem(comment[str_to_qstr('post_title')]))
                 row += 1
             self.ui.tblComments.resizeColumnsToContents()
@@ -87,4 +90,8 @@ class wpcDesk(QtGui.QMainWindow):
     def showConfigWindow(self):
         self.settings.pull_data()
         self.settings.exec_()
+
+    def showAboutWindow(self):
+        aboutWindow = AboutWindow()
+        aboutWindow.exec_()
 

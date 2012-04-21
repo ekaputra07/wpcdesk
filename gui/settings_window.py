@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'settings.ui'
 #
-# Created: Wed Feb  1 00:26:33 2012
+# Created: Sat Apr 21 21:46:02 2012
 #      by: PyQt4 UI code generator 4.7.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,7 +14,13 @@ class Ui_formConfig(object):
         formConfig.setObjectName("formConfig")
         formConfig.setWindowModality(QtCore.Qt.ApplicationModal)
         formConfig.resize(362, 168)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(formConfig.sizePolicy().hasHeightForWidth())
+        formConfig.setSizePolicy(sizePolicy)
         self.gridLayout = QtGui.QGridLayout(formConfig)
+        self.gridLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")

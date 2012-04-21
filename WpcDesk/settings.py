@@ -5,7 +5,7 @@ import pickle
 import bz2
 
 from PyQt4 import QtGui, QtCore
-from ui.settings_window import Ui_formConfig
+from gui.settings_window import Ui_formConfig
 
 __filename__ = 'config.cfg'
 __configpath__ = os.path.join(os.path.abspath(os.path.dirname(__file__)), __filename__)
@@ -52,7 +52,7 @@ class ConnectionSettings(QtGui.QDialog):
     def save_to_file(self, data):
         try:
             cfile = open(__configpath__, 'wb')
-            pickle.dump(data, cfile)
+            pickle.dump(data, cfile, 1)
             cfile.close()
             QtGui.QMessageBox.information(self, 'Information','Settings saved.', QtGui.QMessageBox.Ok)
         except:

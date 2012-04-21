@@ -42,6 +42,12 @@
         <kerning>false</kerning>
        </font>
       </property>
+      <property name="cursor" stdset="0">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string extracomment="Double-click to edit selected comment."/>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
@@ -60,8 +66,17 @@
       <property name="autoScroll">
        <bool>true</bool>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
+      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
       </property>
       <property name="showGrid">
        <bool>true</bool>
@@ -144,6 +159,15 @@
       <column>
        <property name="text">
         <string>Author</string>
+       </property>
+       <property name="toolTip">
+        <string extracomment="Double-click to edit selected comment."/>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
       <column>
@@ -248,6 +272,9 @@
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
+   <property name="toolTip">
+    <string extracomment="Double click to edit comment."/>
+   </property>
    <property name="toolButtonStyle">
     <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
@@ -266,15 +293,10 @@
    <addaction name="separator"/>
    <addaction name="actionClose"/>
   </widget>
-  <action name="actionHello">
-   <property name="text">
-    <string>Hello</string>
-   </property>
-  </action>
   <action name="actionRefresh">
    <property name="icon">
     <iconset>
-     <normaloff>resources/arrow_refresh.png</normaloff>resources/arrow_refresh.png</iconset>
+     <normaloff>res/arrow_refresh.png</normaloff>res/arrow_refresh.png</iconset>
    </property>
    <property name="text">
     <string>Refresh</string>
@@ -286,7 +308,7 @@
   <action name="actionConnection">
    <property name="icon">
     <iconset>
-     <normaloff>resources/connect.png</normaloff>resources/connect.png</iconset>
+     <normaloff>res/connect.png</normaloff>res/connect.png</iconset>
    </property>
    <property name="text">
     <string>Connection</string>
@@ -298,7 +320,7 @@
   <action name="actionPreferences">
    <property name="icon">
     <iconset>
-     <normaloff>resources/cog_edit.png</normaloff>resources/cog_edit.png</iconset>
+     <normaloff>res/cog_edit.png</normaloff>res/cog_edit.png</iconset>
    </property>
    <property name="text">
     <string>Preferences</string>
@@ -310,7 +332,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset>
-     <normaloff>resources/information.png</normaloff>resources/information.png</iconset>
+     <normaloff>res/information.png</normaloff>res/information.png</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -322,7 +344,7 @@
   <action name="actionClose">
    <property name="icon">
     <iconset>
-     <normaloff>resources/door_in.png</normaloff>resources/door_in.png</iconset>
+     <normaloff>res/door_in.png</normaloff>res/door_in.png</iconset>
    </property>
    <property name="text">
     <string>Close</string>
