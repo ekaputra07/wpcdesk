@@ -5,6 +5,7 @@ from PyQt4 import QtGui, QtCore
 from gui.main_window import Ui_mainWindow
 from settings import ConnectionSettings
 from about import AboutWindow
+from comment_editor import CommentEditor
 from wpcdesk_threads import GetCommentsThread
 import time
 
@@ -67,8 +68,10 @@ class wpcDesk(QtGui.QMainWindow):
                 time_tpl = date_instance.timetuple()
                 date = time.strftime("%b %d, %Y %H:%M", time_tpl)
 
-
-                self.ui.tblComments.setItem(row, 1, QtGui.QTableWidgetItem(date))
+                datetime = QtGui.QTableWidgetItem()
+                datetime.setText(date)
+                datetime.setIcon(QtGui.QIcon(':/time.png'))
+                self.ui.tblComments.setItem(row, 1, datetime)
 
                 #set status
                 status = QtGui.QTableWidgetItem()
@@ -94,7 +97,7 @@ class wpcDesk(QtGui.QMainWindow):
 
                 #set comment
                 comm = QtGui.QTableWidgetItem()
-                comm.setText(comment[str_to_qstr('content')][:100]+'...')
+                comm.setText(comment[str_to_qstr('content')])
                 comm.setIcon(QtGui.QIcon(':/comment.png'))
                 self.ui.tblComments.setItem(row, 5, comm)
 
@@ -126,13 +129,16 @@ class wpcDesk(QtGui.QMainWindow):
     def showCommentEditor(self, QTableWidgetItem):
         row = QTableWidgetItem.row()
 
-        comment_id = self.ui.tblComments.item(row, 0).text()
-        comment_date = self.ui.tblComments.item(row, 1).text()
-        comment_status = self.ui.tblComments.item(row, 2).text()
-        comment_author = self.ui.tblComments.item(row, 3).text()
-        comment_email = self.ui.tblComments.item(row, 4).text()
-        comment_content = self.ui.tblComments.item(row, 5).text()
-        comment_post = self.ui.tblComments.item(row, 6).text()
+        data = {
+        'comment_id': self.ui.tblComments.item(row, 0).text(),
+        'comment_date': self.ui.tblComments.item(row, 1).text(),
+        'comment_status': self.ui.tblComments.item(row, 2).text(),
+        'comment_author': self.ui.tblComments.item(row, 3).text(),
+        'comment_email': self.ui.tblComments.item(row, 4).text(),
+        'comment_content': self.ui.tblComments.item(row, 5).text(),
+        'comment_post': self.ui.tblComments.item(row, 6).text(),
+        }
 
-        QtGui.QMessageBox.warning(self, 'Warning!', comment_content, QtGui.QMessageBox.Ok)
+        commentWindow = CommentEditor(data=data)
+        commentWindow.exec_()
 
