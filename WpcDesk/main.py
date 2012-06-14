@@ -41,7 +41,8 @@ class wpcDesk(QtGui.QMainWindow):
             self.update_status('Ready to connect...')
 
         self.ui.progressBar.hide()
-        #self.loadComments()
+        self.loadComments()
+        self.nama = 'Eka Putra'
 
 
     def loadComments(self):
@@ -139,6 +140,6 @@ class wpcDesk(QtGui.QMainWindow):
         'comment_post': self.ui.tblComments.item(row, 6).text(),
         }
 
-        commentWindow = CommentEditor(data=data)
+        commentWindow = CommentEditor(parent=self, data=data)
         commentWindow.exec_()
 
