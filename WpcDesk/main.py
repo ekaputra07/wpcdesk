@@ -60,12 +60,12 @@ class wpcDesk(QtGui.QMainWindow):
                 #list key should be called with QtCore.QString('key_name') because returned value from Thread
                 #is a list of QString objects
                 #a str_to_qstr function used for shortcut
-                self.ui.tblComments.setItem(row, 0, QtGui.QTableWidgetItem(comment[str_to_qstr('comment_id')]))
+                self.ui.tblComments.setItem(row, 0, QtGui.QTableWidgetItem(comment['comment_id']))
 
                 #should be converted to standard datetime format
                 #because datetime returned by xmlrpclib is a datetime instance
                 #http://docs.python.org/library/xmlrpclib.html#module-xmlrpclib
-                date_instance = comment[str_to_qstr('date_created_gmt')]
+                date_instance = comment['date_created_gmt']
                 time_tpl = date_instance.timetuple()
                 date = time.strftime("%b %d, %Y %H:%M", time_tpl)
 
@@ -76,7 +76,7 @@ class wpcDesk(QtGui.QMainWindow):
 
                 #set status
                 status = QtGui.QTableWidgetItem()
-                if comment[str_to_qstr('status')] == 'approve':
+                if comment['status'] == 'approve':
                     s = 'Approved'
                     icon = QtGui.QIcon(':/tick.png')
                 else:
@@ -89,20 +89,20 @@ class wpcDesk(QtGui.QMainWindow):
 
                 #set author
                 author = QtGui.QTableWidgetItem()
-                author.setText(comment[str_to_qstr('author')])
+                author.setText(comment['author'])
                 author.setIcon(QtGui.QIcon(':/user.png'))
                 self.ui.tblComments.setItem(row, 3, author)
 
                 #set email
-                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('author_email')]))
+                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment['author_email']))
 
                 #set comment
                 comm = QtGui.QTableWidgetItem()
-                comm.setText(comment[str_to_qstr('content')])
+                comm.setText(comment['content'])
                 comm.setIcon(QtGui.QIcon(':/comment.png'))
                 self.ui.tblComments.setItem(row, 5, comm)
 
-                self.ui.tblComments.setItem(row, 6, QtGui.QTableWidgetItem(comment[str_to_qstr('post_title')]))
+                self.ui.tblComments.setItem(row, 6, QtGui.QTableWidgetItem(comment['post_title']))
 
                 row += 1
             self.ui.tblComments.resizeColumnsToContents()
