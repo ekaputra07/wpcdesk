@@ -9,7 +9,6 @@ class BaseCommentThread(QtCore.QThread):
     """
     The base thread class for all connection thread used by this application.
     """
-
     connection_error_status = 'Connection error...'
     connection_error_msg = 'Failed connecting to server,\nMake sure connection settings is correct and you are connected to internet.'
 
@@ -65,9 +64,30 @@ class EditCommentThread(BaseCommentThread):
         try:
             status = self.server.wp.editComment(1, self.username, self.password, self.comment_id, self.data)
         except:
-            self.is_loading.emit(False)
             self.is_success.emit(False)
         else:
-            self.is_loading.emit(False)
             self.is_success.emit(True)
 
+        self.is_loading.emit(False)
+
+class DeleteCommentThread(BaseCommentThread):
+    """ Delete comment """
+
+    is_loading = QtCore.pyqtSignal(bool)
+    is_success = QtCore.pyqtSignal(bool)
+
+    def __init__(self, data, *args, **kwargs):
+        super(DeleteCommentThread, self).__init__(*args, **kwargs)
+        self.comment_id = data['comment_id']
+
+    def run(self):
+        self.get_connection()
+        self.is_loading.emit(True)
+        try:
+            status = self.server.wp.deleteComment(1, self.username, self.password, int(self.comment_id))
+        except:
+            self.is_success.emit(False)
+        else:
+            self.is_success.emit(True)
+
+        self.is_loading.emit(False)

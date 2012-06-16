@@ -2,8 +2,7 @@
 
 from PyQt4 import QtGui, QtCore
 from gui.comment_window import Ui_CommentWindow
-from wpcdesk_threads import EditCommentThread
-
+from wpcdesk_threads import EditCommentThread, DeleteCommentThread
 class CommentEditor(QtGui.QDialog):
 
     def __init__(self, parent=None, data=None):
@@ -18,10 +17,15 @@ class CommentEditor(QtGui.QDialog):
         self.fill_form(self.data)
 
         QtCore.QObject.connect(self.ui.btn_save, QtCore.SIGNAL("clicked()"), self.saveComment)
+        QtCore.QObject.connect(self.ui.btn_delete, QtCore.SIGNAL("clicked()"), self.deleteComment)
 
         self.edit_comment_thread = EditCommentThread()
-        self.edit_comment_thread.is_loading.connect(self.edit_loading)
+        self.edit_comment_thread.is_loading.connect(self.loading)
         self.edit_comment_thread.is_success.connect(self.edit_status)
+
+        self.delete_comment_thread = DeleteCommentThread(self.data)
+        self.delete_comment_thread.is_loading.connect(self.loading)
+        self.delete_comment_thread.is_success.connect(self.delete_status)
 
     def set_validator(self):
         # Email Validator
@@ -57,7 +61,14 @@ class CommentEditor(QtGui.QDialog):
         self.edit_comment_thread.set_data(data)
         self.edit_comment_thread.start()
 
-    def edit_loading(self, is_loading):
+    def deleteComment(self):
+        answer = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure want to delete this comment?', QtGui.QMessageBox.Yes|QtGui.QMessageBox.Cancel)
+        if answer == QtGui.QMessageBox.Yes:
+            self.delete_comment_thread.start()
+        else:
+            return
+
+    def loading(self, is_loading):
         if is_loading:
             self.ui.progressBar.show()
         else:
@@ -69,4 +80,12 @@ class CommentEditor(QtGui.QDialog):
             QtGui.QMessageBox.information(self, 'Comment updated!','Comment successfuly updated.', QtGui.QMessageBox.Ok)
         else:
             QtGui.QMessageBox.warning(self, 'Failed!','Failed to update comment.', QtGui.QMessageBox.Ok)
+
+    def delete_status(self, status):
+        if status:
+            self.parent.loadComments()
+            QtGui.QMessageBox.information(self, 'Comment Deleted','Comment successfuly deleted.', QtGui.QMessageBox.Ok)
+            self.close()
+        else:
+            QtGui.QMessageBox.warning(self, 'Failed!','Failed to delete comment.', QtGui.QMessageBox.Ok)
 

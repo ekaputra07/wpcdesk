@@ -1,27 +1,23 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import time
+import xmlrpclib
 from PyQt4 import QtGui, QtCore
 from gui.main_window import Ui_mainWindow
 from settings import ConnectionSettings
 from about import AboutWindow
 from comment_editor import CommentEditor
 from wpcdesk_threads import GetCommentsThread
-import time
+from utils import str_to_qstr
 
-import xmlrpclib
-
-
-def str_to_qstr(string):
-    """Shortcut to convert QString to Python String"""
-    return QtCore.QString(string)
 
 class wpcDesk(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self, parent)
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self)
-
+        
         self.settings = ConnectionSettings()
 
         QtCore.QObject.connect(self.ui.actionRefresh, QtCore.SIGNAL("activated()"), self.loadComments)
@@ -42,7 +38,6 @@ class wpcDesk(QtGui.QMainWindow):
 
         self.ui.progressBar.hide()
         self.loadComments()
-        self.nama = 'Eka Putra'
 
 
     def loadComments(self):
@@ -60,12 +55,12 @@ class wpcDesk(QtGui.QMainWindow):
                 #list key should be called with QtCore.QString('key_name') because returned value from Thread
                 #is a list of QString objects
                 #a str_to_qstr function used for shortcut
-                self.ui.tblComments.setItem(row, 0, QtGui.QTableWidgetItem(comment['comment_id']))
+                self.ui.tblComments.setItem(row, 0, QtGui.QTableWidgetItem(comment[str_to_qstr('comment_id')]))
 
                 #should be converted to standard datetime format
                 #because datetime returned by xmlrpclib is a datetime instance
                 #http://docs.python.org/library/xmlrpclib.html#module-xmlrpclib
-                date_instance = comment['date_created_gmt']
+                date_instance = comment[str_to_qstr('date_created_gmt')]
                 time_tpl = date_instance.timetuple()
                 date = time.strftime("%b %d, %Y %H:%M", time_tpl)
 
@@ -76,7 +71,7 @@ class wpcDesk(QtGui.QMainWindow):
 
                 #set status
                 status = QtGui.QTableWidgetItem()
-                if comment['status'] == 'approve':
+                if comment[str_to_qstr('status')] == 'approve':
                     s = 'Approved'
                     icon = QtGui.QIcon(':/tick.png')
                 else:
@@ -89,20 +84,20 @@ class wpcDesk(QtGui.QMainWindow):
 
                 #set author
                 author = QtGui.QTableWidgetItem()
-                author.setText(comment['author'])
+                author.setText(comment[str_to_qstr('author')])
                 author.setIcon(QtGui.QIcon(':/user.png'))
                 self.ui.tblComments.setItem(row, 3, author)
 
                 #set email
-                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment['author_email']))
+                self.ui.tblComments.setItem(row, 4, QtGui.QTableWidgetItem(comment[str_to_qstr('author_email')]))
 
                 #set comment
                 comm = QtGui.QTableWidgetItem()
-                comm.setText(comment['content'])
+                comm.setText(comment[str_to_qstr('content')])
                 comm.setIcon(QtGui.QIcon(':/comment.png'))
                 self.ui.tblComments.setItem(row, 5, comm)
 
-                self.ui.tblComments.setItem(row, 6, QtGui.QTableWidgetItem(comment['post_title']))
+                self.ui.tblComments.setItem(row, 6, QtGui.QTableWidgetItem(comment[str_to_qstr('post_title')]))
 
                 row += 1
             self.ui.tblComments.resizeColumnsToContents()
