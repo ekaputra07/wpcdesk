@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 from PyQt4 import QtGui
-from WpcDesk.main import wpcDesk
+from main import wpcDesk
 
 
 if __name__ == '__main__':
