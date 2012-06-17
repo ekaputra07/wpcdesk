@@ -1,0 +1,9 @@
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WpcDesk
+Exec=wpcdesk
+Icon=/usr/share/WpcDesk/icon.png
+Categories=Application;Network;Utility
+Name[en_US]=WpcDesk

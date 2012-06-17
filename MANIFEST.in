@@ -1,5 +1,4 @@
 include README
-include AUTHOR
 include COPYING
 recursive-include WpcDesk/gui/ui *
 recursive-include WpcDesk/gui/res *
