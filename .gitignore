@@ -1,3 +1,4 @@
 *.pyc
 *.cfg
-
+dist
+Wordpress_Comment_Desk.egg-info

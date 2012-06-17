@@ -1,5 +1,8 @@
 include README
 include COPYING
+include install.sh
+include uninstall.sh
+recursive-include bin *
 recursive-include WpcDesk/gui/ui *
 recursive-include WpcDesk/gui/res *
 
