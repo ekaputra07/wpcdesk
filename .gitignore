@@ -1,4 +1,4 @@
 *.pyc
 *.cfg
 dist
-Wordpress_Comment_Desk.egg-info
+WpcDesk.egg-info
