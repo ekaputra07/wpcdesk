@@ -22,7 +22,7 @@ from setuptools import setup, find_packages
 setup(
     name = "WpcDesk",
     version = "1.0.0",
-    url = 'https://bitbucket.org/ekaputra/wpcdesk',
+    url = 'https://github.com/ekaputra07/wpcdesk',
     description = 'Simple python program to manage comments on remote WordPress blog via XML-RPC access.',
     license = 'GNU/GPL',
     author = 'Eka Putra',
