@@ -56,6 +56,10 @@ class ConnectionSettings(QtGui.QDialog):
             self.ui.serverEdit.setText(data.get('server',''))
             self.ui.usernameEdit.setText(data.get('username',''))
             self.ui.passEdit.setText(data.get('password',''))
+
+            self.ui.nameEdit.setText(data.get('name',''))
+            self.ui.emailEdit.setText(data.get('email',''))
+            self.ui.UrlEdit.setText(data.get('url',''))
         return
 
 
@@ -83,6 +87,9 @@ class ConnectionSettings(QtGui.QDialog):
         server = self.ui.serverEdit.text()
         username = self.ui.usernameEdit.text()
         password = self.ui.passEdit.text()
+        name = self.ui.nameEdit.text()
+        email = self.ui.emailEdit.text()
+        url = self.ui.UrlEdit.text()
 
         if not server:
             QtGui.QMessageBox.warning(self, 'Warning!','Please provides your WordPress XML-RPC Server URL.\nUsually http://yourdomain.com/xmlrpc.php', QtGui.QMessageBox.Ok)
@@ -99,7 +106,10 @@ class ConnectionSettings(QtGui.QDialog):
         data = {
             'server': server,
             'username': username,
-            'password' : password
+            'password' : password,
+            'name': name,
+            'email': email,
+            'url': url,
             }
 
         self.save_to_file(data)
