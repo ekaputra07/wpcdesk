@@ -19,7 +19,7 @@
 # otherwise return QString as a normal python String. (latest version of PyQt4)
 
 try:
-    from QtCore import QString
+    from PyQt4.QtCore import QString
 except ImportError:
     QString  = str
 

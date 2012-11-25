@@ -19,7 +19,7 @@
 
 import sys
 from PyQt4 import QtGui
-from WpcDesk.main import wpcDesk
+from wpcdesk.main import wpcDesk
 
 
 if __name__ == '__main__':

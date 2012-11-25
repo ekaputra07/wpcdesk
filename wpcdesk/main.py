@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #  wpcdesk - WordPress Comment Desktop
@@ -69,6 +70,7 @@ class wpcDesk(QtGui.QMainWindow):
             self.ui.tblComments.setRowCount(len(comments))
             row = 0
             for comment in comments:
+
                 #list key should be called with QtCore.QString('key_name') because returned value from Thread
                 #is a list of QString objects
                 #a str_to_qstr function used for shortcut
@@ -155,3 +157,9 @@ class wpcDesk(QtGui.QMainWindow):
         commentWindow = CommentEditor(parent=self, data=data)
         commentWindow.exec_()
 
+
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    wpcdesk = wpcDesk()
+    wpcdesk.showMaximized()
+    sys.exit(app.exec_())
