@@ -28,6 +28,10 @@ setup(
     author = 'Eka Putra',
     author_email = 'ekaputra@balitechy.com',
     packages = find_packages(),
+    data_files = [
+                ('/usr/share/pixmaps', ['data/wpcdesk.png']),
+                ('/usr/share/applications', ['data/wpcdesk.desktop'])
+                ],
     include_package_data = True,
     zip_safe = False,
     scripts=['bin/wpcdesk'],

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=WpcDesk
+Comment=WordPress Comments Manager
+Exec=wpcdesk
+Icon=wpcdesk
+Terminal=false
+Type=Application
+Categories=Network;Utility;
+StartupNotify=true

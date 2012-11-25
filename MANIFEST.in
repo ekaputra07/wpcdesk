@@ -3,6 +3,7 @@ include COPYING
 include install.sh
 include uninstall.sh
 recursive-include bin *
+recursive-include data *
 recursive-include wpcdesk/gui/ui *
 recursive-include wpcdesk/gui/res *
 
